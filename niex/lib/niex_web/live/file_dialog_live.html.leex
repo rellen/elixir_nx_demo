@@ -1,0 +1,33 @@
+<div class="niex modal">
+    <div class="file-dialog">
+        <h3><%= @title %></h3>
+        <div class="path">
+            <%= for {component, path} <- @paths do %>
+            <a phx-click="select" phx-value-path='<%= path %>'><%= component %></a>
+            <% end %>
+            <%= if @mode == "save" do %>
+            <form phx-change="update-filename" phx-submit="noop">
+                <input class="new_filename" type="text" value="<%= @filename %>"
+                       name="filename"/>
+            </form>
+            <% end %>
+        </div>
+
+        <div class="files">
+            <%= for {filename, path, selectable, selected} <- @files do %>
+            <a class="file <%= !selectable && "unselectable" || "" %> <%= selected && "selected" || "" %>"
+               phx-click="select" phx-value-path='<%= path %>'><%= filename %></a>
+            <% end %>
+        </div>
+
+        <div class="buttons">
+            <button class="cancel" phx-click="open">Cancel</button>
+            <%= if @mode == "open" do %>
+                <button class="open" phx-click="open" <%= @selected == nil && "disabled" %>>Open</button>
+            <% end %>
+            <%= if @mode == "save" do %>
+                <button class="open" phx-click="save" <%= @file_exists && raw('data-confirm="Warning: the selected file already exists - overwrite?"') %> <%= @filename == "" && "disabled" %>>Save</button>
+            <% end %>
+        </div>
+    </div>
+</div>

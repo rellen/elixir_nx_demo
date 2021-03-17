@@ -1,0 +1,254 @@
+.niex {
+  form, textarea, input, h1, h2, h3, h4, h5, p {
+      margin: 0px;
+      margin-bottom: 1.5rem;
+  }
+
+  button {
+    margin: 4px;
+    color: #333;
+    background: #ccc;
+  }
+
+  .niex-header {
+    form {
+      flex-grow: 1;
+    }
+
+    input.title {
+      flex-grow: 1;
+      width: 100%;
+      border: none;
+      height: 60px;
+      font-size: 22pt;
+      margin-left: 32px;
+    }
+
+    .tools {
+      margin-left: auto;
+      margin-right: 32px;
+    }
+
+    z-index: 1;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+  }
+
+  .niex-body {
+    padding-top: 80px;
+
+    .cell.markdown .content {
+      background: #eee;
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    .cell.markdown .error {
+      color: #888888;
+      font-size: .8em;
+      margin: 4px;
+    }
+
+    .cell .content .out {
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      min-height: 24px;
+      padding: 8px;
+      border-radius: 4px;
+      width: 100%;
+    }
+
+    .cell .content .out-line {
+      display: flex;
+    }
+      .cell .content .out-line[data-type="code"] {
+      font-family: monospace;
+    }
+
+    .cell {
+      position: relative;
+      tab-index: 1;
+    }
+
+    .cell button {
+      color: #333333;
+    }
+
+    .cell .cell-row {
+      display: flex;
+
+      .gutter {
+        width: 80px;
+        flex-shrink: 0;
+        font-family: monospace;
+      }
+
+      .content {
+        display: flex;
+        justify-content: center;
+        flex-grow: 1;
+        form { flex-grow: 1; }
+        video, img, .chart { margin: auto; }
+      }
+    }
+
+    .cell textarea {
+      font-family: monospace;
+      background: #eee;
+      border: 1px solid #ddd;
+      min-height: 54px;
+      resize: none;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .cell .toolbar {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      display: flex;
+
+      button {
+        margin-left: 4px;
+        background: #ccc;
+        width: 30px;
+        height: 30px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+    }
+  }
+
+
+  .niex.modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .niex .file-dialog {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    width: 600px;
+    height: 500px;
+    overflow: scroll;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 6px #eeeeee;
+
+    .files {
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      border: 1px solid #ccc;
+      overflow: scroll;
+      padding: 16px;
+    }
+
+    .path {
+      a {
+        cursor: pointer;
+      }
+      margin-bottom: 8px;
+    }
+
+    .file {
+      cursor: pointer;
+      padding: 4px;
+
+      &.unselectable {
+        color: #888888;
+        pointer-events: none;
+      }
+
+      &.selected {
+        background: #cccccc;
+        border-radius: 6px;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-shrink: 0;
+      margin-top: 16px;
+
+      .cancel {
+        margin-left: auto
+      }
+    }
+  }
+
+  .dropdown {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+
+    .icon { margin-left: auto; }
+
+    svg path {
+      fill: #ccc;
+    }
+
+    position: relative;
+
+    .dropdown-items {
+      background: #fff;
+      font-size: 11pt;
+      border: 1px solid #eee;
+      padding: 8px 12px;
+      position: absolute;
+      display: none;
+      right: 0px;
+      top: 22px;
+      z-index: 100;
+    }
+
+    &:hover {
+      width: 80px;
+
+      .dropdown-items {
+        display: block;
+
+        .item {
+          display: block;
+          cursor: pointer;
+        }
+      }
+
+      svg path {
+        fill: #222;
+      }
+    }
+  }
+
+  .cell-separator {
+    margin: 12px 0px;
+    display: flex;
+
+    .dropdown {
+      margin-left: auto;
+    }
+  }
+}

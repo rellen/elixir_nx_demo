@@ -1,0 +1,31 @@
+<div class="niex">
+    <div class="niex-header" phx-hook="NiexPage" id="niex-page">
+        <form phx-change="update-title" phx-submit="noop">
+            <input type="text" name="title" class="title"
+                   value="<%= @state.notebook.metadata[:name] %>"></input>
+        </form>
+        <div class="tools">
+            <button <%= @state.dirty && raw("data-confirm='The current notebook has unsaved changes - continue?'") %>
+                    phx-click="open">Open
+            </button>
+            <button <%= !@state.dirty && "disabled" %>
+                    phx-click="save"><%= !@state.dirty && "Saved!" || "Save" %></button>
+        </div>
+    </div>
+
+    <div class="niex-body" phx-hook="NiexPage" id="niex-page">
+        <%= live_component(@socket, NiexWeb.CellSeparator, %{id: "separator-#{0}", index: 0}) %>
+        <%= for {cell, i} <- Enum.with_index(Niex.State.active_worksheet(@state)[:cells]) do %>
+        <%= live_component(@socket, NiexWeb.Cells, %{id: "cell-#{cell.id}", cell: cell, idx: i, selected: @state.selected_cell == cell.id}) %>
+        <%= live_component(@socket, NiexWeb.CellSeparator, %{id: "separator-#{i + 1}", index: i + 1}) %>
+        <% end %>
+    </div>
+
+    <%= if @show_open_dialog do %>
+    <%= live_render(@socket, NiexWeb.FileDialogLive, id: "file-dialog", session: %{"mode" => "open", "reply" => "close_open_dialog", "title" => "Select a Niex Notebook", "extensions" => [".niex"]}) %>
+<% end %>
+
+    <%= if @show_save_dialog do %>
+    <%= live_render(@socket, NiexWeb.FileDialogLive, id: "file-dialog", session: %{"mode" => "save", "reply" => "close_save_dialog", "title" => "Create a new notebook", "extensions" => [".niex"]}) %>
+<% end %>
+</div>
