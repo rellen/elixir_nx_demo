@@ -1,3 +1,10 @@
+# Elixir Nx Demo
+
+This is a clone of the Niex repo with some modifications to run the demo.
+Run the Phoenix app and open the notebook called `nx_demo1.niex`
+
+The rest of this readme is the original from https://github.com/jonklein/niex
+
 # Niex - Interactive Elixir Code Notebooks
 
 Niex is an interactive Elixir code notebook with support for embedded media and 
