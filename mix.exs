@@ -47,7 +47,8 @@ defmodule Niex.MixProject do
       {:earmark, "~> 1.4.13"},
       {:uuid, "~> 1.1.8"},
       {:plug_cowboy, "~> 2.0"},
-      {:nx, github: "elixir-nx/nx", branch: "main", sparse: "nx"}
+      {:nx, github: "elixir-nx/nx", branch: "main", sparse: "nx", override: true}
+      # {:exla, "~> 0.1.0-dev", github: "elixir-nx/nx", sparse: "exla", override: true}
     ]
   end
 

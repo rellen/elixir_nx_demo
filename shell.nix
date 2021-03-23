@@ -10,7 +10,7 @@ let
   elixir = beam.packages.erlangR23.elixir_1_11;
 in
 mkShell {
-  buildInputs = [ rebar rebar3 erlang elixir git nodejs yarn ]
+  buildInputs = [ rebar rebar3 erlang elixir git nodejs yarn python3 ]
      ++ optional stdenv.isLinux inotify-tools
      ++ optionals stdenv.isDarwin (with darwin.apple_sdk.frameworks; [
       CoreFoundation
